@@ -20,6 +20,10 @@ export const API = {
  * Storage keys for AsyncStorage
  */
 export const STORAGE_KEYS = {
+  // Zustand store keys
+  APP_STORE: '@credapp/app_store',
+  AUTH_STORE: '@credapp/auth_store',
+  // Individual storage keys
   AUTH_TOKEN: '@credapp/auth_token',
   REFRESH_TOKEN: '@credapp/refresh_token',
   USER_DATA: '@credapp/user_data',
@@ -34,6 +38,7 @@ export const ANIMATION = {
   FAST: 150,
   NORMAL: 300,
   SLOW: 500,
+  VERY_SLOW: 1500,
 } as const;
 
 /**

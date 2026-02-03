@@ -5,14 +5,15 @@
  * Contains: Home, Rewards, Cards, Profile
  */
 
-import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MainTabParamList } from './navigationTypes';
-import { HomeScreen } from '@/features/home/screens/HomeScreen';
-import { RewardsScreen } from '@/features/rewards/screens/RewardsScreen';
-import { ProfileScreen } from '@/features/profile/screens/ProfileScreen';
 import { useTheme, Text } from '@/design-system';
+import { HomeScreen } from '@/features/home/screens/HomeScreen';
+import { ProfileScreen } from '@/features/profile/screens/ProfileScreen';
+import { RewardsScreen } from '@/features/rewards/screens/RewardsScreen';
+
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -20,28 +21,34 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
  * Tab Icon Component
  * Simple text-based icons (can be replaced with vector icons)
  */
-function TabIcon({ label, focused }: { label: string; focused: boolean }) {
-  
-  const icons: Record<string, string> = {
-    Home: '🏠',
-    Rewards: '🎁',
-    Cards: '💳',
-    Profile: '👤',
-  };
-
+function TabIcon({ icon, focused }: { icon: string; focused: boolean }) {
   return (
     <View style={styles.iconContainer}>
       <Text 
         variant="body.large" 
-        style={{ 
-          opacity: focused ? 1 : 0.5,
-          fontSize: 24,
-        }}
+        style={focused ? styles.iconTextFocused : styles.iconTextUnfocused}
       >
-        {icons[label] || '●'}
+        {icon}
       </Text>
     </View>
   );
+}
+
+// Stable icon components defined outside of MainNavigator to avoid re-creation on each render
+function HomeTabIcon({ focused }: { focused: boolean }) {
+  return <TabIcon icon="🏠" focused={focused} />;
+}
+
+function RewardsTabIcon({ focused }: { focused: boolean }) {
+  return <TabIcon icon="🎁" focused={focused} />;
+}
+
+function CardsTabIcon({ focused }: { focused: boolean }) {
+  return <TabIcon icon="💳" focused={focused} />;
+}
+
+function ProfileTabIcon({ focused }: { focused: boolean }) {
+  return <TabIcon icon="👤" focused={focused} />;
 }
 
 export function MainNavigator() {
@@ -49,7 +56,7 @@ export function MainNavigator() {
 
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={{
         headerShown: false,
         tabBarStyle: {
           backgroundColor: theme.colors.background.secondary,
@@ -65,20 +72,38 @@ export function MainNavigator() {
           fontSize: 11,
           fontWeight: '500',
         },
-        tabBarIcon: ({ focused }) => (
-          <TabIcon label={route.name} focused={focused} />
-        ),
-      })}
+      }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Rewards" component={RewardsScreen} />
+      <Tab.Screen 
+        name="Home" 
+        component={HomeScreen}
+        options={{
+          tabBarIcon: HomeTabIcon,
+        }}
+      />
+      <Tab.Screen 
+        name="Rewards" 
+        component={RewardsScreen}
+        options={{
+          tabBarIcon: RewardsTabIcon,
+        }}
+      />
       {/* Cards screen - placeholder for now */}
       <Tab.Screen 
         name="Cards" 
         component={HomeScreen} 
-        options={{ tabBarLabel: 'Cards' }}
+        options={{ 
+          tabBarLabel: 'Cards',
+          tabBarIcon: CardsTabIcon,
+        }}
       />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen 
+        name="Profile" 
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ProfileTabIcon,
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -87,5 +112,13 @@ const styles = StyleSheet.create({
   iconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  iconTextFocused: {
+    fontSize: 24,
+    opacity: 1,
+  },
+  iconTextUnfocused: {
+    fontSize: 24,
+    opacity: 0.5,
   },
 });

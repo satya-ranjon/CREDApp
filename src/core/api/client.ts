@@ -6,6 +6,7 @@
  * - Request/response logging (dev only)
  * - Error handling
  * - Response transformation
+ * - Retry logic with configurable attempts
  * 
  * Usage:
  * import { apiClient } from '@/core/api';
@@ -13,6 +14,7 @@
  */
 
 import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { API } from '../config/constants';
 import { env } from '../config/env';
 
 /**
@@ -26,6 +28,41 @@ export const apiClient: AxiosInstance = axios.create({
     Accept: 'application/json',
   },
 });
+
+/**
+ * Retry configuration using constants
+ */
+const retryConfig = {
+  retries: API.RETRY_COUNT,
+  retryDelay: API.RETRY_DELAY,
+};
+
+/**
+ * Helper function to delay execution
+ */
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+/**
+ * Wrapper for API calls with retry logic
+ */
+export async function withRetry<T>(
+  apiCall: () => Promise<T>,
+  retries: number = Number(retryConfig.retries)
+): Promise<T> {
+  try {
+    return await apiCall();
+  } catch (error) {
+    if (retries > 0 && axios.isAxiosError(error)) {
+      // Only retry on network errors or 5xx server errors
+      const shouldRetry = !error.response || (error.response.status >= 500 && error.response.status < 600);
+      if (shouldRetry) {
+        await delay(retryConfig.retryDelay);
+        return withRetry(apiCall, (retries - 1) as number);
+      }
+    }
+    throw error;
+  }
+}
 
 /**
  * Request interceptor

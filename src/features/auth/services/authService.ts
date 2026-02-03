@@ -22,8 +22,8 @@ const mockUser: AuthResponse = {
   refreshToken: 'mock-refresh-token-67890',
   user: {
     id: 'user-001',
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: 'Satya Ranjan',
+    email: 'satya@example.com',
   },
 };
 

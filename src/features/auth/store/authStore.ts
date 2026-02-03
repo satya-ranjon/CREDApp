@@ -7,10 +7,11 @@
  * - Login/Logout actions
  */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { AuthResponse } from '../types/auth.types';
+import { STORAGE_KEYS } from '@/core/config/constants';
 import { useAppStore } from '@/store';
 
 interface AuthStore {
@@ -73,7 +74,7 @@ export const useAuthStore = create<AuthStore>()(
         },
       }),
       {
-        name: 'credapp-auth',
+        name: STORAGE_KEYS.AUTH_STORE,
         storage: createJSONStorage(() => AsyncStorage),
         partialize: (state) => ({
           token: state.token,

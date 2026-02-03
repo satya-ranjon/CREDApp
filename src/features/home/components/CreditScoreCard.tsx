@@ -7,7 +7,7 @@
 
 import React, { memo, useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
-import { getCreditScoreLabel, CREDIT_SCORE } from '@/core/config';
+import { getCreditScoreLabel, CREDIT_SCORE, ANIMATION } from '@/core/config';
 import { Text, Card, useTheme, Theme } from '@/design-system';
 
 interface CreditScoreCardProps {
@@ -44,7 +44,7 @@ export const CreditScoreCard = memo(function CreditScoreCard({
     // Animate the score on mount
     Animated.timing(animatedValue, {
       toValue: 1,
-      duration: 1500,
+      duration: ANIMATION.VERY_SLOW,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();

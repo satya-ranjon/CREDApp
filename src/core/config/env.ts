@@ -3,22 +3,9 @@
  * 
  * Centralized access to environment variables.
  * Uses react-native-config for .env file support.
- * 
- * Note: For this to work, you need to:
- * 1. npm install react-native-config
- * 2. Create .env files (.env.development, .env.production)
- * 3. Follow platform-specific setup for react-native-config
- * 
- * For now, we use fallback values for development.
  */
 
-// Try to import from react-native-config if available
-// Fallback to defaults for initial development
-const Config = {
-  API_URL: 'https://api.example.com',
-  API_TIMEOUT: '30000',
-  ENVIRONMENT: 'development',
-};
+import Config from 'react-native-config';
 
 export const env = {
   /** API base URL */
@@ -38,3 +25,4 @@ export const env = {
 } as const;
 
 export type Env = typeof env;
+

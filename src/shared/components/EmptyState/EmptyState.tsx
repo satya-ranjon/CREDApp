@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
-import { Text, Button, useTheme } from '@/design-system';
+import { Text, Button,  } from '@/design-system';
 
 interface EmptyStateProps {
   icon?: string;
@@ -25,7 +25,6 @@ export function EmptyState({
   onAction,
   style,
 }: EmptyStateProps) {
-  const { theme } = useTheme();
 
   return (
     <View style={[styles.container, style]}>

@@ -18,26 +18,26 @@ export function SplashScreen() {
   const { setAppReady, setAuthenticated } = useAppStore();
 
   useEffect(() => {
+    const initializeApp = async () => {
+      try {
+        // Simulate initialization tasks:
+        // - Load stored credentials
+        // - Validate token
+        // - Fetch initial data
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // For demo purposes, we'll start as not authenticated
+        // In a real app, you'd check for stored token here
+        setAuthenticated(true);
+        setAppReady(true);
+      } catch (error) {
+        console.error('App initialization failed:', error);
+        setAppReady(true);
+      }
+    };
+
     initializeApp();
-  }, []);
-
-  const initializeApp = async () => {
-    try {
-      // Simulate initialization tasks:
-      // - Load stored credentials
-      // - Validate token
-      // - Fetch initial data
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // For demo purposes, we'll start as not authenticated
-      // In a real app, you'd check for stored token here
-      setAuthenticated(false);
-      setAppReady(true);
-    } catch (error) {
-      console.error('App initialization failed:', error);
-      setAppReady(true);
-    }
-  };
+  }, [setAppReady, setAuthenticated]);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background.primary }]}>

@@ -4,7 +4,7 @@
  * Standard screen wrapper with safe area handling.
  */
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { View, StyleSheet, ViewStyle, StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/design-system';
@@ -33,17 +33,21 @@ export function ScreenLayout({
 
   const bgColor = backgroundColor || theme.colors.background.primary;
 
+  const containerStyle = useMemo(
+    () => [
+      styles.container,
+      {
+        backgroundColor: bgColor,
+        paddingTop: safeTop ? insets.top : 0,
+        paddingBottom: safeBottom ? insets.bottom : 0,
+      },
+      style,
+    ],
+    [bgColor, safeTop, safeBottom, insets.top, insets.bottom, style]
+  );
+
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: bgColor,
-          paddingTop: safeTop ? insets.top : 0,
-          paddingBottom: safeBottom ? insets.bottom : 0,
-        },
-        style,
-      ]}
+    <View style={containerStyle}
     >
       <StatusBar
         barStyle={isDark ? 'light-content' : 'dark-content'}

@@ -17,6 +17,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
+import { STORAGE_KEYS } from '@/core/config/constants';
 
 /**
  * App-wide state interface
@@ -72,7 +73,7 @@ export const useAppStore = create<AppState>()(
         reset: () => set(initialState),
       }),
       {
-        name: 'credapp-storage',
+        name: STORAGE_KEYS.APP_STORE,
         storage: createJSONStorage(() => AsyncStorage),
         // Only persist these fields
         partialize: (state) => ({
