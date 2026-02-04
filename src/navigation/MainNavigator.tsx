@@ -10,6 +10,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MainTabParamList } from './navigationTypes';
 import { useTheme, Text } from '@/design-system';
+import { CardsScreen } from '@/features/cards/screens/CardsScreen';
 import { HomeScreen } from '@/features/home/screens/HomeScreen';
 import { ProfileScreen } from '@/features/profile/screens/ProfileScreen';
 import { RewardsScreen } from '@/features/rewards/screens/RewardsScreen';
@@ -88,10 +89,9 @@ export function MainNavigator() {
           tabBarIcon: RewardsTabIcon,
         }}
       />
-      {/* Cards screen - placeholder for now */}
       <Tab.Screen 
         name="Cards" 
-        component={HomeScreen} 
+        component={CardsScreen} 
         options={{ 
           tabBarLabel: 'Cards',
           tabBarIcon: CardsTabIcon,
