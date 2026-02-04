@@ -78,4 +78,6 @@ apk/
 # Environment files
 .env
 .env.local
+# react-native-config codegen
+ios/tmp.xcconfig
 .env.*.local
