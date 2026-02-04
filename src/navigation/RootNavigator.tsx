@@ -14,6 +14,7 @@ import { AuthNavigator } from './AuthNavigator';
 import { MainNavigator } from './MainNavigator';
 import { RootStackParamList } from './navigationTypes';
 import { useTheme } from '@/design-system';
+import { AddCardScreen } from '@/features/cards/screens/AddCardScreen';
 import { SplashScreen } from '@/features/splash/screens/SplashScreen';
 import { useIsAuthenticated, useIsAppReady } from '@/store';
 
@@ -71,7 +72,17 @@ export function RootNavigator() {
           <Stack.Screen name="Auth" component={AuthNavigator} />
         ) : (
           // Show main app when logged in
-          <Stack.Screen name="Main" component={MainNavigator} />
+          <>
+            <Stack.Screen name="Main" component={MainNavigator} />
+            <Stack.Screen 
+              name="AddCard" 
+              component={AddCardScreen}
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+              }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Splash: undefined;
   Auth: NavigatorScreenParams<AuthStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
+  AddCard: undefined;
 };
 
 /**

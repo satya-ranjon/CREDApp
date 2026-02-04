@@ -5,6 +5,7 @@
  * Features a premium card carousel and detailed card information.
  */
 
+import { useNavigation } from '@react-navigation/native';
 import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -60,6 +61,7 @@ const MOCK_CARDS: CreditCard[] = [
 export function CardsScreen() {
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   const [selectedCard, setSelectedCard] = useState<CreditCard>(MOCK_CARDS[0]);
 
   const handleCardSelect = useCallback((card: CreditCard) => {
@@ -96,6 +98,7 @@ export function CardsScreen() {
           </View>
           <TouchableOpacity 
             style={[styles.addButton, { backgroundColor: theme.colors.background.tertiary }]}
+            onPress={() => navigation.navigate('AddCard' as never)}
           >
             <Text variant="heading.h3" color="accent">+</Text>
           </TouchableOpacity>
