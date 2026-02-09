@@ -19,6 +19,9 @@ export type RootStackParamList = {
   AddCard: undefined;
   AllTransactions: undefined;
   AllActivity: undefined;
+  EditProfile: undefined;
+  LinkedCards: undefined;
+  Appearance: undefined;
 };
 
 /**

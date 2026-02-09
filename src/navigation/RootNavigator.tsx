@@ -17,6 +17,9 @@ import { useTheme } from '@/design-system';
 import { AddCardScreen } from '@/features/cards/screens/AddCardScreen';
 import { AllActivityScreen } from '@/features/cards/screens/AllActivityScreen';
 import { AllTransactionsScreen } from '@/features/home/screens/AllTransactionsScreen';
+import { AppearanceScreen } from '@/features/profile/screens/AppearanceScreen';
+import { EditProfileScreen } from '@/features/profile/screens/EditProfileScreen';
+import { LinkedCardsScreen } from '@/features/profile/screens/LinkedCardsScreen';
 import { SplashScreen } from '@/features/splash/screens/SplashScreen';
 import { useIsAuthenticated, useIsAppReady } from '@/store';
 
@@ -94,6 +97,27 @@ export function RootNavigator() {
             <Stack.Screen
               name="AllActivity"
               component={AllActivityScreen}
+              options={{
+                animation: 'slide_from_right',
+              }}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfileScreen}
+              options={{
+                animation: 'slide_from_right',
+              }}
+            />
+            <Stack.Screen
+              name="LinkedCards"
+              component={LinkedCardsScreen}
+              options={{
+                animation: 'slide_from_right',
+              }}
+            />
+            <Stack.Screen
+              name="Appearance"
+              component={AppearanceScreen}
               options={{
                 animation: 'slide_from_right',
               }}

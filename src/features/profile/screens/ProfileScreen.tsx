@@ -1,20 +1,14 @@
 /* eslint-disable no-console */
 /**
  * Profile Screen
- * 
+ *
  * User profile with settings and account options.
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { View, StyleSheet, ScrollView, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import { Text, Card, useTheme } from '@/design-system';
 import { useAuth } from '@/features/auth';
 
@@ -65,20 +59,17 @@ export function ProfileScreen() {
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const { user, logout } = useAuth();
+  const navigation = useNavigation();
 
   const handleLogout = () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: logout,
-        },
-      ]
-    );
+    Alert.alert('Logout', 'Are you sure you want to logout?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: logout,
+      },
+    ]);
   };
 
   return (
@@ -126,13 +117,13 @@ export function ProfileScreen() {
             icon="👤"
             title="Edit Profile"
             subtitle="Name, email, phone"
-            onPress={() => console.log('Edit profile')}
+            onPress={() => navigation.navigate('EditProfile' as never)}
           />
           <MenuItem
             icon="💳"
             title="Linked Cards"
             subtitle="Manage your credit cards"
-            onPress={() => console.log('Linked cards')}
+            onPress={() => navigation.navigate('LinkedCards' as never)}
           />
           <MenuItem
             icon="🔔"
@@ -157,7 +148,7 @@ export function ProfileScreen() {
             icon="🎨"
             title="Appearance"
             subtitle="Dark mode, themes"
-            onPress={() => console.log('Appearance')}
+            onPress={() => navigation.navigate('Appearance' as never)}
           />
           <MenuItem
             icon="🌐"
@@ -172,37 +163,15 @@ export function ProfileScreen() {
           SUPPORT
         </Text>
         <Card variant="flat" padding="none" style={styles.menuCard}>
-          <MenuItem
-            icon="❓"
-            title="Help & FAQ"
-            onPress={() => console.log('Help')}
-          />
-          <MenuItem
-            icon="📝"
-            title="Terms of Service"
-            onPress={() => console.log('Terms')}
-          />
-          <MenuItem
-            icon="🛡️"
-            title="Privacy Policy"
-            onPress={() => console.log('Privacy')}
-          />
-          <MenuItem
-            icon="⭐"
-            title="Rate the App"
-            onPress={() => console.log('Rate')}
-          />
+          <MenuItem icon="❓" title="Help & FAQ" onPress={() => console.log('Help')} />
+          <MenuItem icon="📝" title="Terms of Service" onPress={() => console.log('Terms')} />
+          <MenuItem icon="🛡️" title="Privacy Policy" onPress={() => console.log('Privacy')} />
+          <MenuItem icon="⭐" title="Rate the App" onPress={() => console.log('Rate')} />
         </Card>
 
         {/* Logout */}
         <Card variant="flat" padding="none" style={styles.menuCard}>
-          <MenuItem
-            icon="🚪"
-            title="Logout"
-            onPress={handleLogout}
-            showArrow={false}
-            danger
-          />
+          <MenuItem icon="🚪" title="Logout" onPress={handleLogout} showArrow={false} danger />
         </Card>
 
         {/* App Version */}
