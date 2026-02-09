@@ -1,6 +1,6 @@
 /**
  * Cards Screen
- * 
+ *
  * Main screen for managing and viewing credit cards.
  * Features a premium card carousel and detailed card information.
  */
@@ -79,13 +79,10 @@ export function CardsScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background.primary }]}>
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.background.primary} />
-      
+
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={[
-          styles.content,
-          { paddingTop: insets.top + 16 }
-        ]}
+        contentContainerStyle={[styles.content, { paddingTop: insets.top + 16 }]}
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
@@ -96,20 +93,18 @@ export function CardsScreen() {
               {MOCK_CARDS.length} cards linked
             </Text>
           </View>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.addButton, { backgroundColor: theme.colors.background.tertiary }]}
             onPress={() => navigation.navigate('AddCard' as never)}
           >
-            <Text variant="heading.h3" color="accent">+</Text>
+            <Text variant="heading.h3" color="accent">
+              +
+            </Text>
           </TouchableOpacity>
         </View>
 
         {/* Card Carousel */}
-        <CardCarousel
-          cards={MOCK_CARDS}
-          onCardSelect={handleCardSelect}
-          activeIndex={0}
-        />
+        <CardCarousel cards={MOCK_CARDS} onCardSelect={handleCardSelect} activeIndex={0} />
 
         {/* Selected Card Details */}
         <CardDetailsPanel
@@ -122,41 +117,55 @@ export function CardsScreen() {
         <View style={styles.activitySection}>
           <View style={styles.sectionHeader}>
             <Text variant="heading.h3">Recent Activity</Text>
-            <TouchableOpacity>
-              <Text variant="body.small" color="accent">View All</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('AllActivity' as never)}>
+              <Text variant="body.small" color="accent">
+                View All
+              </Text>
             </TouchableOpacity>
           </View>
 
           {/* Activity Items */}
-          <View style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}>
+          <View
+            style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}
+          >
             <View style={styles.activityIcon}>
               <Text variant="body.large">🛒</Text>
             </View>
             <View style={styles.activityInfo}>
               <Text variant="body.regular">Amazon Shopping</Text>
-              <Text variant="caption" color="tertiary">Today, 2:30 PM</Text>
+              <Text variant="caption" color="tertiary">
+                Today, 2:30 PM
+              </Text>
             </View>
             <Text variant="body.regular">-₹2,499</Text>
           </View>
 
-          <View style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}>
+          <View
+            style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}
+          >
             <View style={styles.activityIcon}>
               <Text variant="body.large">⛽</Text>
             </View>
             <View style={styles.activityInfo}>
               <Text variant="body.regular">Indian Oil</Text>
-              <Text variant="caption" color="tertiary">Yesterday</Text>
+              <Text variant="caption" color="tertiary">
+                Yesterday
+              </Text>
             </View>
             <Text variant="body.regular">-₹1,800</Text>
           </View>
 
-          <View style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}>
+          <View
+            style={[styles.activityItem, { backgroundColor: theme.colors.background.secondary }]}
+          >
             <View style={styles.activityIcon}>
               <Text variant="body.large">🍔</Text>
             </View>
             <View style={styles.activityInfo}>
               <Text variant="body.regular">Swiggy</Text>
-              <Text variant="caption" color="tertiary">Feb 2</Text>
+              <Text variant="caption" color="tertiary">
+                Feb 2
+              </Text>
             </View>
             <Text variant="body.regular">-₹650</Text>
           </View>

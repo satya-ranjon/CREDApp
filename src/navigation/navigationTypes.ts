@@ -18,6 +18,7 @@ export type RootStackParamList = {
   Main: NavigatorScreenParams<MainTabParamList>;
   AddCard: undefined;
   AllTransactions: undefined;
+  AllActivity: undefined;
 };
 
 /**

@@ -15,6 +15,7 @@ import { MainNavigator } from './MainNavigator';
 import { RootStackParamList } from './navigationTypes';
 import { useTheme } from '@/design-system';
 import { AddCardScreen } from '@/features/cards/screens/AddCardScreen';
+import { AllActivityScreen } from '@/features/cards/screens/AllActivityScreen';
 import { AllTransactionsScreen } from '@/features/home/screens/AllTransactionsScreen';
 import { SplashScreen } from '@/features/splash/screens/SplashScreen';
 import { useIsAuthenticated, useIsAppReady } from '@/store';
@@ -86,6 +87,13 @@ export function RootNavigator() {
             <Stack.Screen
               name="AllTransactions"
               component={AllTransactionsScreen}
+              options={{
+                animation: 'slide_from_right',
+              }}
+            />
+            <Stack.Screen
+              name="AllActivity"
+              component={AllActivityScreen}
               options={{
                 animation: 'slide_from_right',
               }}
