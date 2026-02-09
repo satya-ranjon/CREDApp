@@ -1,10 +1,9 @@
 /**
  * Navigation Type Definitions
- * 
+ *
  * Type-safe navigation with React Navigation.
  * All screen params are defined here for autocomplete.
  */
-
 
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
@@ -18,6 +17,7 @@ export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
   AddCard: undefined;
+  AllTransactions: undefined;
 };
 
 /**
@@ -42,20 +42,20 @@ export type MainTabParamList = {
 /**
  * Screen props types for each navigator
  */
-export type RootStackScreenProps<T extends keyof RootStackParamList> = 
-  NativeStackScreenProps<RootStackParamList, T>;
+export type RootStackScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
+  RootStackParamList,
+  T
+>;
 
-export type AuthStackScreenProps<T extends keyof AuthStackParamList> = 
-  CompositeScreenProps<
-    NativeStackScreenProps<AuthStackParamList, T>,
-    RootStackScreenProps<keyof RootStackParamList>
-  >;
+export type AuthStackScreenProps<T extends keyof AuthStackParamList> = CompositeScreenProps<
+  NativeStackScreenProps<AuthStackParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
 
-export type MainTabScreenProps<T extends keyof MainTabParamList> = 
-  CompositeScreenProps<
-    BottomTabScreenProps<MainTabParamList, T>,
-    RootStackScreenProps<keyof RootStackParamList>
-  >;
+export type MainTabScreenProps<T extends keyof MainTabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<MainTabParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
 
 /**
  * Global type declaration for useNavigation hook

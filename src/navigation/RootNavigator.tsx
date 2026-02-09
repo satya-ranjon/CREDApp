@@ -1,6 +1,6 @@
 /**
  * Root Navigator
- * 
+ *
  * Top-level navigator that manages:
  * - Splash screen
  * - Auth flow (when not authenticated)
@@ -15,6 +15,7 @@ import { MainNavigator } from './MainNavigator';
 import { RootStackParamList } from './navigationTypes';
 import { useTheme } from '@/design-system';
 import { AddCardScreen } from '@/features/cards/screens/AddCardScreen';
+import { AllTransactionsScreen } from '@/features/home/screens/AllTransactionsScreen';
 import { SplashScreen } from '@/features/splash/screens/SplashScreen';
 import { useIsAuthenticated, useIsAppReady } from '@/store';
 
@@ -74,12 +75,19 @@ export function RootNavigator() {
           // Show main app when logged in
           <>
             <Stack.Screen name="Main" component={MainNavigator} />
-            <Stack.Screen 
-              name="AddCard" 
+            <Stack.Screen
+              name="AddCard"
               component={AddCardScreen}
               options={{
                 presentation: 'modal',
                 animation: 'slide_from_bottom',
+              }}
+            />
+            <Stack.Screen
+              name="AllTransactions"
+              component={AllTransactionsScreen}
+              options={{
+                animation: 'slide_from_right',
               }}
             />
           </>
