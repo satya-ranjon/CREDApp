@@ -3,11 +3,10 @@
  *
  * Shows and manages user's linked credit cards.
  */
-
+import { useNavigation } from '@react-navigation/native';
 import React, { memo } from 'react';
 import { View, StyleSheet, FlatList, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { Text, Card, useTheme } from '@/design-system';
 
 interface LinkedCard {

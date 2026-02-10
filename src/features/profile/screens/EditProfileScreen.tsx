@@ -3,7 +3,7 @@
  *
  * Allows users to edit their profile information (name, email, phone).
  */
-
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   View,
@@ -17,7 +17,6 @@ import {
   Platform,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { Text, Card, useTheme } from '@/design-system';
 import { useAuth } from '@/features/auth';
 

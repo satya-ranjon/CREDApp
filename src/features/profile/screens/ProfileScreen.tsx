@@ -4,11 +4,10 @@
  *
  * User profile with settings and account options.
  */
-
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet, ScrollView, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { Text, Card, useTheme } from '@/design-system';
 import { useAuth } from '@/features/auth';
 

@@ -3,11 +3,10 @@
  *
  * Allows users to customize app appearance (dark mode, themes).
  */
-
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, StatusBar, TouchableOpacity, Switch } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { Text, Card, useTheme } from '@/design-system';
 
 interface ThemeOption {
